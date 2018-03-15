@@ -1,0 +1,12 @@
+1. Create account in https://openweathermap.org/api
+2. Get API access key
+3. Make a multi-threaded program to connect to API
+3a. Locations to be monitored should be placed in configuration file
+3b. Configuration file should have refresh frequency (for free api, you should not make more than 60 per minute.. so make not more than 5 per minute..)
+4. One thread to download 5 days/3 hour forecast
+5. One thread to download 16 days/daily forecast
+6. One thread to download weather maps
+7. All data should be stored in database (mongodb) as separate collections/table
+8. One thread to open the latest weather map and display the map in window (should show last image as per last time stamp)
+9. Forecast threads should print out alerts if there is rain/snow or freezing temperatures (❤2 def fahrenheit) in any of forecast period
+10. See if you use graph API to display forecast/previous 10 day data from database as a graph (prebuilt libraries are there to do this)
