@@ -1,5 +1,7 @@
 import os
 
+from pymongo import MongoClient
+
 
 LOCATIONS = {
     'Washington DC': {'latitude': 38.8761, 'longitude': -77.0389, 'zip': 20500},
@@ -14,6 +16,5 @@ REFRESH_FREQUENCY_CURRENT = 60
 APP_ID = os.getenv('WEATHER_API_KEY')
 MONGO_URL = os.getenv('WEATHER_MONGO_URL', 'localhost:27017')
 
-
-
+DB = MongoClient(MONGO_URL)
 

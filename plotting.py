@@ -7,6 +7,10 @@ from utils import get_db
 
 
 def mongo_data():
+    """
+    Retrieves the 10 days forecast data from database
+    :return: Dictionary of 10 days weather forecast
+    """
     db = get_db()
     start = datetime.today()
     end = datetime.today() + timedelta(days=5)
@@ -17,12 +21,17 @@ def mongo_data():
 
 
 def plot_data():
+    """
+    The date and the corresponding temperature data are appended to the empty list.
+    The temperature is converted from K to F
+    :return: The date data list and corresponding weather temperature list
+    """
     date_list = []
     temp_list = []
     data = mongo_data()
     for reading in data['list']:
         date = datetime.fromtimestamp(int(reading['dt']))
-        temperature = 1.8 * reading['main']['temp'] - 459.67  # convert from kelvin to F
+        temperature = 1.8 * reading['main']['temp'] - 459.67
         date_list.append(date)
         temp_list.append(temperature)
         print('{0} : {1}'.format(date, temperature))
@@ -30,7 +39,9 @@ def plot_data():
 
 
 def plot_graph():
-    # make chart
+    """
+    Plot a graph of temperature vs date
+    """
     date_list, temp_list = plot_data()
     fig, ax = plotting.subplots()
     ax.plot_date(date_list, temp_list, '-')

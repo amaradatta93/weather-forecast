@@ -15,7 +15,7 @@ The following is a script to get the weather forecast from www.openweathermap.co
 
 # Configuration
 1. Add locations in config.py using the following format:
-	``` 'City name': {'latitude': latitude, 'longitude': longitude, 'zip': 5-digit zipcode} ```
+	``` 'City name': {'latitude': latitude, 'longitude': longitude, 'zip': 5-digit zip_code} ```
 
 2. Change the refresh frequency (in seconds) of 5 days/3 hour by altering REFRESH_FREQUENCY_FORECAST
 3. Change the refresh frequency (in seconds) of current weather date by altering REFRESH_FREQUENCY_CURRENT

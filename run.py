@@ -8,11 +8,14 @@ from utils import push_data_to_db, api_url_json, add_field, open_map_url
 
 
 def five_day_forecast():
+    """
+    Collects the forecast for the following 5 days/ 3 hours data from the www.openweathermap.com and pushes it to MongoDB
+    """
     while True:
         for location in LOCATIONS:
-            zipcode = LOCATIONS[location]['zip']
+            zip_code = LOCATIONS[location]['zip']
             hour = 'forecast'
-            json_data_hourly = api_url_json(hour, zipcode)
+            json_data_hourly = api_url_json(hour, zip_code)
             formatted_hourly = json_data_hourly['list'][0]['weather'][0]['main']
             time_forecast = json_data_hourly['list'][0]['dt_txt']
             push_data_to_db('fiveDayUpdate', add_field(json_data_hourly))
@@ -23,11 +26,14 @@ def five_day_forecast():
 
 
 def current_forecast():
+    """
+    Collects the current weather data from the www.openweathermap.com and pushes it to MongoDB
+    """
     while True:
         for location in LOCATIONS:
-            zipcode = LOCATIONS[location]['zip']
+            zip_code = LOCATIONS[location]['zip']
             current = 'weather'
-            json_data_current = api_url_json(current, zipcode)
+            json_data_current = api_url_json(current, zip_code)
             formatted_current = json_data_current['weather'][0]['main']
             current_weather_timestamp = datetime.datetime.now().isoformat()
             push_data_to_db('currentUpdate', json_data_current)
@@ -40,9 +46,9 @@ def current_forecast():
 
 def daily_f():
     while True:
-        for zipcode in zip_input:
+        for zip_code in zip_input:
             daily = 'forecast/daily'
-            json_data_daily = api_url_json(daily, zipcode)
+            json_data_daily = api_url_json(daily, zip_code)
             push_data_to_db('sixteenDayUpdate', add_field(json_data_daily))
             print(json_data_daily)
         time.sleep(2)
@@ -51,6 +57,9 @@ def daily_f():
 
 
 def open_map(map_type):
+    """
+    Takes in the map type and opens the corresponding map on the browser
+    """
     for location in LOCATIONS:
         latitude = LOCATIONS[location]['latitude']
         longitude = LOCATIONS[location]['longitude']
